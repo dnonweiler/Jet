@@ -4,6 +4,7 @@ coded in Objective C++
 \\Run "MAIN.m" in MatLab//
 
 
+THIS ENGINE IS DESIGNED TO RUN ON DIESEL FUEL
 
 
 Description of structure............
@@ -44,4 +45,44 @@ CALCs
             calculates cp_prod AND k_prod
                                                             ............end
 
+
+Variables.........
+
+[P] Pressure
+[T] Temperature
+  [Tmax] Maximum temperature in jet engine... this always occurs in section3
+[m] Mass in kg
+  [mdotair] Mass flow rate of air entering engine
+  [mdotfuel] Mass flow rate of fuel
+  [m_prod] Mass of air+mass of fuel
+  [M] Molar mass in kg/mol
+[A_inlet] Area of the jet engine inlet
+[pressratio] Compression ratio of compressor
+[AF] Air to fuel ratio
+  [AFs] Stoichiometric air to fuel ratio
+[w12] Work done from state 1 to 2
+[rho4] Density of air+fuel at section4
+[TSFC] Thrust specific fuel consumption (kg of fuel burned per N of thrust)
+[v#] Velocity at section #
+[NPR] Nozzle pressure ratio
+[h] Enthalpy in units of J/kg
+[R] Gas constant (kJ/kg-K)
+
+I NEED TO LOOK UP:
+[v_molecule]
+[ci]
+[cp]
+[cv]
+[k]
+                                                        ............end
+
 Any questions???
+
+
+TO DO
+
+check lines 4, 12 of nozzle
+
+
+
+
