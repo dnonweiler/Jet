@@ -1,4 +1,3 @@
-%inputs: Tmax (K), T2 (K), AFAFs
 function [q, cp_prod, k_prod, rho4] = combustion_chamber_SECTION3(T3, T2, AFAFs, T4, P4)
 %Calculate heat produced in combustion chamber per kmol of diesel
 %C14.4H24.9 + (AF/AFs) 20.625 (O2 + 3.76 N2)
@@ -20,8 +19,8 @@ hof_H2O = -241826;
 
 %delta h of reactants and products relative to 25 deg C
 %assuming diesel enters at 25 deg C
-[deltah_H2Or, deltah_O2r, deltah_N2r, deltah_CO2r] = deltah_CALC(T2);
-[deltah_H2Op, deltah_O2p, deltah_N2p, deltah_CO2p] = deltah_CALC(T3);
+[deltah_H2Or, deltah_O2r, deltah_N2r, deltah_CO2r] = delta_h_CALC(T2);
+[deltah_H2Op, deltah_O2p, deltah_N2p, deltah_CO2p] = delta_h_CALC(T3);
 
 H_r = v_diesel*hof_diesel + v_O2r*deltah_O2r + v_N2r*deltah_N2r;
 H_p = v_CO2*hof_CO2 + v_H2O*hof_H2O + v_CO2*deltah_CO2p + v_H2O*deltah_H2Op + v_O2p*deltah_O2p + v_N2p*deltah_N2p;

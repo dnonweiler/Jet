@@ -16,8 +16,8 @@ ENGINE_INPUTS = [973.15, 2, 0.3629, 0.0023, 101325, 293.15]; %T04B
     TSFC_list = [];
 
     for AFAFs = 1:.1:5
-%% State 1 -- Ambient Conditions
-    %Defined as input
+%% State 1 -- Inlet
+    %Ambient conditions, defined as input
 
 %% State 2 -- Compressor
     k_air = 1.4;
@@ -45,14 +45,14 @@ ENGINE_INPUTS = [973.15, 2, 0.3629, 0.0023, 101325, 293.15]; %T04B
         T4 = T3 - w34/cp_prod;
         P4 = isoentropic_P_T_CALC(P3, T3, [], T4, k_prod);
         P5=P1;
-    [AF,Thrust,m_fuel,NTSC,v_5] = convergent_nozzle_SECTION4(cp_prod, k_prod, T4, P4, mdotair, mdotfuel, rho4, A_inlet, AF);
+    [AF,Thrust,m_fuel,TSFC,v_5] = convergent_nozzle_SECTION4(cp_prod, k_prod, T4, P4, mdotair, mdotfuel, rho4, A_inlet, AF);
 
 %% What the hell is this shit
     AF_list = [AF_list AF];
     Thrust_list = [Thrust_list Thrust];
     m_fuel_list = [m_fuel_list m_fuel];
     v_5_list = [v_5_list v_5];
-    TSFC_list = [TSFC_list NTSC];
+    TSFC_list = [TSFC_list TSFC];
     end
 
 %% 01 Results -- PLOTS

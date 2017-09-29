@@ -9,5 +9,5 @@ elseif isempty(t1)
 elseif isempty(t2)
   output = t1*(p2/p1)^(k-1/k);
 else
-  output = 'error';
+  output = 'isentropic calculator error';
 end
