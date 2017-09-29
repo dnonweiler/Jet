@@ -1,4 +1,4 @@
-function output = isoentropic_P_T(p1, t1, p2, t2, k)
+function output = isoentropic_P_T_CALC(p1, t1, p2, t2, k)
 
 if isempty(p1)
   output = p2*(t1/t2)^(k/k-1);

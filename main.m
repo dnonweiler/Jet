@@ -1,7 +1,7 @@
 %Temps in K, Area in m^2, mdot in kg/s
 
 %turbocharger#= [1 Tmax K, 2 pressratio, 3 mdotair kg/s, 4 A_inlet sq m, 5 Pambient Pa, 6 Tambient K];
-turbocharger1 = [linspace(500,1750), 2, 0.3629, 0.0023, 101325, 293.15]; %T04B
+turbocharger1 = [973.15, 2, 0.3629, 0.0023, 101325, 293.15]; %T04B
 turbochargers = [turbocharger1];
 
 for i = 1:1
@@ -10,9 +10,9 @@ for i = 1:1
     mdotair = turbochargers(i,3);
     A_inlet = turbochargers(i,4);
     P1 = turbochargers(i,5);
-    T1=(turbochargers(i,6);
+    T1 = turbochargers(i,6);
 end
-    
+
     AF_list = [];
     Thrust_list = [];
     m_fuel_list = [];
@@ -24,11 +24,11 @@ end
     %Defined as input
 
 %% State 2 - Compressor
-        P2 = pressratio*P1;
+
         k_air = 1.4;
-        T2 = isoentropic_P_T(P1, T1, P2, [], k_air);
         cp_air = 1.004;
-        w12 = cp_air*(T2-T1);
+        [T2, P2, w12] = compressor_SECTION2(k_air, cp_air, P1, T1, P2, pressratio, T2)
+
 
 %% State 3 - Combustion
         T3 = Tmax;
@@ -38,16 +38,16 @@ end
         v_H2O = 12.45;
         v_O2p = (AFAFs-1)*20.625;
         v_N2p = AFAFs*77.55;
-        [cp_prod, k_prod] = cpk_calculator(T3, v_CO2, v_H2O, v_N2p, v_O2p);
+        [cp_prod, k_prod] = cpk_CALC(T3, v_CO2, v_H2O, v_N2p, v_O2p);
 
-%% State 4 -
+%% State 4 - Nozzle
         T4 = T3 - w34/cp_prod;
-        P4 = isoentropic_P_T(P3, T3, [], T4, k_prod);
-        [rho4] = density_calc (T4, P4, v_CO2, v_H2O, v_N2p, v_O2p);
+        P4 = isoentropic_P_T_CALC(P3, T3, [], T4, k_prod);
+        [rho4] = density_CALC (T4, P4, v_CO2, v_H2O, v_N2p, v_O2p);
         AFs = 20.625;
         AF = AFs * AFAFs;
         mdotfuel = mdotair/28.97/AF*198.06;
-        [AF,Thrust,m_fuel,NTSC,v_5] = nozzle(cp_prod, k_prod, T4, P4, mdotair, mdotfuel, rho4, A_inlet, AF);
+        [AF,Thrust,m_fuel,NTSC,v_5] = convergent_nozzle_SECTION4(cp_prod, k_prod, T4, P4, mdotair, mdotfuel, rho4, A_inlet, AF);
         AF_list = [AF_list AF];
         Thrust_list = [Thrust_list Thrust];
         m_fuel_list = [m_fuel_list m_fuel];
@@ -77,6 +77,3 @@ end
     plot(percent_ta, Tmax);
     xlabel('%ta');
     ylabel('max temp');
-
-
-end

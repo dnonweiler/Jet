@@ -1,4 +1,4 @@
-function [h_H2O, h_O2, h_N2, h_CO2] = deltah_calc(temp)
+function [h_H2O, h_O2, h_N2, h_CO2] = deltah_CALC(temp)
 
 %Difference in enthalpy with reference temperature (25 celcius)
 %(Accurate from 298K to 1300K)

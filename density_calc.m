@@ -1,4 +1,4 @@
-function [rho4] = density_calc (T4, P4, v_CO2, v_H2O, v_N2p, v_O2p)
+function [rho4] = density_CALC (T4, P4, v_CO2, v_H2O, v_N2p, v_O2p)
 Pstp = 100000;
 Tstp = 25+273.15;
 rho_CO2_stp = 1.775;

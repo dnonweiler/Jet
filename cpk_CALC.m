@@ -1,4 +1,4 @@
-function [cp_prod, k_prod] = cpk_calculator(T3, v_CO2, v_H2O, v_N2p, v_O2p)
+function [cp_prod, k_prod] = cpk_CALC(T3, v_CO2, v_H2O, v_N2p, v_O2p)
 %Calculate cp (kJ/kgK) of product mixture
 %Calculate cp of each product - dependent on temp
 theta = T3/1000;
