@@ -24,10 +24,9 @@ end
     %Defined as input
 
 %% State 2 - Compressor
-
         k_air = 1.4;
         cp_air = 1.004;
-        [T2, P2, w12] = compressor_SECTION2(k_air, cp_air, P1, T1, P2, pressratio, T2)
+        [T2, P2, w12] = compressor_SECTION2(k_air, cp_air, P1, T1, pressratio);
 
 
 %% State 3 - Combustion
@@ -60,8 +59,8 @@ end
 
     Table1=table(percent_ta',Thrust_list',m_fuel_list');
     Table1.Properties.VariableNames = {'Percent_ta' 'Thrust' 'm_dot_fuel'};
-    writetable(Table1);
-
+    %writetable(Table1);
+clf
     figure('Name', strcat('Turbocharger', num2str(i), ' Results'))
     subplot(1,2,1);
     plot(percent_ta,Thrust_list);
@@ -73,7 +72,3 @@ end
         title('Percent Theoretical Air vs TSFC');
         ylabel('TSFC (kg/N*s)');
         xlabel('%ta');
-    subplot(2,1,1);
-    plot(percent_ta, Tmax);
-    xlabel('%ta');
-    ylabel('max temp');

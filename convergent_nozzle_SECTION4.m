@@ -1,7 +1,7 @@
 function [AF,Thrust,m_fuel, TSFC, v_5] = convergent_nozzle_SECTION4(cp_prod,k_prod,T4,P4,m_air,m_fuel,rho_prod,A_intake, AF)
 
 %Pa -- Patm -- subsonic exit conditions
-P5 = P1;
+P5 = 101325;
 %Nozzle pressure ratio
 NPR=P5/P4;
 
